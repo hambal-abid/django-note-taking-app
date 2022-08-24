@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block page_content %}
+  <div class="row pt-4">
+    {% for note in notes %}
+      <div class="col-md-4">
+        <div class="card mb-2">
+          <div class="card-header d-flex flex-row-reverse">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+              <a href="{% url 'edit' note.id %}" class="btn btn-outline-primary">Edit</a>
+              <a href="{% url 'delete' note.id %}" class="btn btn-outline-danger">Delete</a>
+            </div>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">{{ note.title }}</h5>
+              <p class="card-text">{{ note.body }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="col-md-4">
+      <a href="{% url 'add' %}" class="link-dark text-decoration-none">
+      <div class="card mb-2">
+        <div class="card-body text-center">
+            <h1 class="card-title">+</h1>
+        </div>
+      </div>
+      </a>
+    </div>
+  </div>
+{% endblock %}

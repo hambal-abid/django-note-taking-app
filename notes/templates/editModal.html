@@ -1,0 +1,30 @@
+{% extends 'main.html'%}
+{% block page_content %}
+    <div class="row justify-content-center">
+        <div class="col-4 pt-5">
+            <div class="pb-4 pt-5">
+                <h3>Edit Note</h3>
+            </div>
+            <div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <p>Title</p>
+                        <div class="input-group mb-3">
+                            <input name="title" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{ editnote.title }}">
+                        </div>
+                        <p>Body</p>
+                        <div class="input-group mb-3">
+                            <textarea name="body" class="form-control" aria-label="With textarea">{{ editnote.body }}</textarea>
+                        </div>
+                        <div class="row text-center pt-2">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary" value="Submit">Save</button>
+                            </div>
+                        </div>          
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

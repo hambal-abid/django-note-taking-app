@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block page_content %}
+    <div class="row justify-content-center">
+        <div class="modal-header text-center pt-5">
+            <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        </div>
+        <div class="col-4 pt-5">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="row justify-content-evenly mb-3">
+                        <div class="col-6">
+                            <p>First Name</p>
+                            <input name="firstname" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="col-6">
+                            <p>Last Name</p>
+                            <input name="lastname" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <p>Email</p>
+                    <div class="input-group mb-3">
+                        <input name="email" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <p>Username</p>
+                    <div class="input-group mb-3">
+                        <input name="username" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <p>Password</p>
+                    <div class="input-group mb-3">
+                        <input name="password" type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <p>Confirm Password</p>
+                    <div class="input-group mb-3">
+                        <input name="confirmpassword" type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="d-grid pt-4">
+                    <button type="submit" class="btn btn-primary" value="Submit">SignUp</button>
+                    </div>             
+                </div>
+            </form>
+            <div class="row text-center pt-2">
+            <a href="{% url 'start' %}">Already have an account?</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
