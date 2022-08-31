@@ -1,8 +1,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container justify-content-center">
-        <h1>Notes</h1>
+    <div class="container-fluid justify-content-center">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'list' %}" class="link-dark text-decoration-none"><h1>Notes</h1></a>
+            </div>
+            <div class="col">
+                <a href="{% url 'signout' %}" class="link-dark text-decoration-none">Logout</a>
+            </div>
+        </div> 
     </div>
 </nav>
 

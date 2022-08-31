@@ -26,4 +26,24 @@
             </div>
         </div>
     </div>
+
+    {% for message in messages %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        {% if message.tags == 'info' %}
+            <script>
+                var m = '{{ message }}';
+                swal('Blocked !', m, 'info')
+            </script>
+        {% elif message.tags == 'error' %}
+            <script>
+                var m = '{{ message }}';
+                swal('Denied !', m, 'error')
+            </script>
+        {% elif message.tags == 'success' %}
+        <script>
+            var m = '{{ message }}';
+            swal('Welcome!', m, 'success')
+        </script>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
