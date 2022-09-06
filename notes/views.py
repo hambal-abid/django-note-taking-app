@@ -11,7 +11,7 @@ from signup import urls
 @login_required(login_url='start') #restricts direct access to the main page using url without login credentials
 @cache_control(no_cache=True, must_revalidate=True, no_store=True) #prevents back-tracking to the previous page
 def list_note(request):
-    notes = Notes.objects.all()
+    notes = Notes.objects.filter(user = request.user)
     context = {
         'notes': notes
     }
@@ -21,11 +21,13 @@ def list_note(request):
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def add_note(request):
     if request.method == 'POST':
-        form = NotesForm(request.POST or None)
+        form = NotesForm(request.POST, request.FILES)
         if form.is_valid():
+            u = request.user
+            i = request.FILES['image']
             t = request.POST['title']
             b = request.POST['body']
-            note = Notes(title=t, body=b)
+            note = Notes(user=u, image=i, title=t, body=b)
             note.save()
             return redirect(reverse('list'))
     return render(request, 'addModal.html', {})
@@ -35,8 +37,9 @@ def add_note(request):
 def edit_note(request, pk):
     editnote = get_object_or_404(Notes, pk=pk)
     if request.method == 'POST':
-        form = NotesForm(request.POST or None)
+        form = NotesForm(request.POST, request.FILES)
         if form.is_valid():
+            editnote.image = request.FILES['image']
             editnote.title = request.POST['title']
             editnote.body = request.POST['body']
             editnote.save()

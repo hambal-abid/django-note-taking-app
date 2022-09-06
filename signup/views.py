@@ -7,19 +7,25 @@ from notes import urls
 from .forms import SignUpForm
 
 # Create your views here.
-def startup(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
 
+def LogIn(request,username,password):
         user = authenticate(username=username, password=password)
 
         if user != None:
             login(request, user)
             return redirect(reverse('list'))
         else:
-            messages.error(request, 'Credentials does not match.')
             return redirect(reverse('start'))
+
+def startup(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('list'))
+    else:
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+
+            return LogIn(request,username,password)
     return render(request, 'welcome.html', {})
 
 def signup(request):
@@ -38,8 +44,8 @@ def signup(request):
             myuser.last_name = lastname
             myuser.save()
 
-            messages.success(request, 'Your account has been created successfully.')
-            return redirect(reverse('start'))
+            return LogIn(request,username,password)
+            # return redirect(reverse('start'))
     # else:
     #     form = SignUpForm()
     #     context = {'form':form}        

@@ -6,12 +6,16 @@
                 <h2>Add Note</h2>
             </div>
             <div>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="modal-body">
+                        <p>Image</p>
+                        <div class="input-group mb-3">
+                            <input name="image" type="file" class="form-control">
+                        </div>
                         <p>Title</p>
                         <div class="input-group mb-3">
-                            <input name="title" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input name="title" type="text" class="form-control">
                         </div>
                         <p>Body</p>
                         <div class="input-group mb-3">
